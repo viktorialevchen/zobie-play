@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Zombie на JavaScript</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style type="text/css">
+		.shooter {
+			width: 80px; 
+			position: absolute; 	
+		}
+		.box {
+			background-image: url(game.png);
+			height: 1000px; 
+			background-size: 100% 100%;
+		}
+		.zombies {
+			width: 80px; 
+			position: absolute;
+		}
+	</style>
+</head>
+<body>	
+	
+	<div class="box" style="">
+		
+		<h5 style="position: absolute; left: 600px; top: 50px" class="score"></h5>
+
+		<!--ГОРОХИ-->
+	    <img class="shooter" src="peashooter.png"  style="top: 250px; left: 460px; ">		
+		<img class="shooter" src="peashooter.png"  style="top: 350px; left: 460px;">	
+		<img class="shooter" src="peashooter.png"  style="top: 450px; left: 460px; ">	
+		<img class="shooter" src="peashooter.png"  style="top: 550px; left: 460px;">
+		<img class="shooter" src="peashooter.png"  style="top: 650px; left: 460px;">
+
+
+		<!--ЗОМБИ-->
+		<img class="zombies" src="zombie1.png" style="top: 220px; left: 1200px;">
+		<img class="zombies" src="zombie2.png" style="top: 320px; left: 1200px;">	
+		<img class="zombies" src="zombie2.png" style="top: 420px; left: 1200px;">
+		<img class="zombies" src="zombie4.png" style="top: 520px; left: 1200px;">
+		<img class="zombies" src="zombie4.png" style="top: 620px; left: 1200px;">
+	</div>
+<script>
+
+let shooters = document.querySelectorAll(".shooter");
+let zombies = document.querySelectorAll(".zoobies");
+let score = document.querySelector(".score");
+
+let zobies_left =1200; 
+
+
+
+window.onload = function() {
+    let zombies = document.querySelectorAll(".zombies");
+
+    zombies.forEach((zombie, index) => {
+       
+        let stopped = false;
+
+        zombie.addEventListener("click", function() {
+            if (stopped) return; 
+
+            let currentLeft = parseInt(zombie.style.left) || 0;
+
+            zombie.style.left = (currentLeft - 50) + "px";
+
+            if ((currentLeft - 50) <= 460) {
+                alert("Зомби " + (index + 1) + " съел горох!");
+                stopped = true; 
+            }
+        });
+    });
+};
+
+</script>
+</body>
+</html>
